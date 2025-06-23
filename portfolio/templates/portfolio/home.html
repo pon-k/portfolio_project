@@ -1,0 +1,28 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="portfolio-container">
+    <h1>ePortfolio</h1>
+    <div class="gallery-container">
+        <button class="nav-button prev-button">&lt;</button>
+        
+        <div class="gallery-slider">
+            {% for project in projects %}
+            <div class="project-slide" data-id="{{ forloop.counter0 }}">
+                <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                <div class="project-info">
+                    <h2>{{ project.title }}</h2>
+                    <p>{{ project.description|linebreaks }}</p>
+                    {% if project.url %}
+                    <a href="{{ project.url }}" target="_blank">View Project</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <button class="nav-button next-button">&gt;</button>
+    </div>
+</div>
+{% endblock %}
